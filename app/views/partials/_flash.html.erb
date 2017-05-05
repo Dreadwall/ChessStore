@@ -1,6 +1,13 @@
-<% flash.each do |name, msg| %>
-  <div data-alert data-options="animation_speed:500, animation:'fadeOut';" class="alert-box <%= flash[:notice] ? "success" : "warning" %> radius">
-    <a href="#" class="close">&times;</a>
-    <%= msg %>
+<div class="row">
+
+  <div class="small-8 small-centered columns loginCenter" >
+      	<% flash.each do |name, msg| %>
+		  <div data-alert data-options="animation_speed:500, animation:'fadeOut';" class="alert-box <%= flash[:notice] ? "success" : "warning" %> radius">
+		    <a href="#" class="close">&times;</a>
+		    <%= msg %>
+		  </div>
+		<% end %>
   </div>
-<% end %>
+</div>
+
+

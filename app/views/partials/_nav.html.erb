@@ -1,31 +1,42 @@
-<div class="contain-to-grid">
-  <nav class="top-bar" data-topbar role="navigation"> 
-    <section class="top-bar-section">
-      <ul class="left">
-        <!-- link to home -->
-        <li><%= link_to "Home", home_path %></li>
 
-        <!-- options for items -->
-        <li class="has-dropdown">
-          <%= link_to "Items", items_path %>
-          <ul class="dropdown">
-            <li><%= link_to "Item List", items_path %></li>
-            <li><%= link_to "Reorder List", home_path %></li>
-            <li><%= link_to "Add an Item", new_item_path %></li>
-          </ul>
-        </li>
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text"> <h4> Chess Warehouse </h4></li>
+      <li class="verticalLine">
+      </li>
+      <li>
+        <a href="/">Home</a>
+      </li>
+      <li><a href="/items">Shop</a></li>
+      
+    </ul>
+  </div>
 
-        <!-- options for purchases -->
-        <li>
-          <%= link_to "Purchases", purchases_path %>
-        </li>
+  <div class="top-bar-right">
 
-        <!-- options for prices -->
-        <li>
-          <%= link_to "Prices", item_prices_path %>
-        </li>
-      </ul>
-
-    </section>
-  </nav>
+    <ul class="menu">
+         <% if logged_in? %>
+            <% if customer? %>
+                <li><a href="#"></a><i class="fa fa-shopping-cart fa-3x"></i></li>
+            <% end %>
+            <li> <%= link_to 'Logout', logout_path %> </li>
+            <li>[<%= current_user.proper_name %>:<%= current_user.role %>]</li>
+        <% else %>
+            <div style="padding-top: 0.5cm; padding-right: 0.5cm"> <%= link_to 'Login', login_path %></div>
+        <% end %>
+    </ul>
+  </div>
 </div>
+
+
+</br>
+</br>
+
+
+
+
+
+
+
+

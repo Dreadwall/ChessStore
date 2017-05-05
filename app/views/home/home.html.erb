@@ -1,3 +1,11 @@
 
-<%# render :partial => 'general_home' %>
-<%= render :partial => 'reorder_list' %>
+<% if admin? &&  %>
+	<%= render :partial => 'admin_home' %>
+<% elsif shipper? %>
+	<%= render :partial => 'shipper_home' %>
+<% elsif manager? %>
+	<%= render :partial => 'manager_home' %>
+<% else %>
+	<%= render :partial => 'general_home' %>
+<% end %>
+

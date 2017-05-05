@@ -1,15 +1,14 @@
-
-<footer>
-
-	<%= link_to 'Home', home_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
-  <%= link_to 'About the Chess Store', about_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
-	<%= link_to 'Contact Us', contact_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
-	<%= link_to 'Privacy Policy', privacy_path %>
-	<br /><br />
-	
-	<div id="copy">
-		Webmaster: <%= mail_to("YOUR EMAIL", "YOUR NAME", encode: "javascript") %> 
-		&nbsp;&nbsp;&copy 2017
+<div id="footer">
+	<p>
+	  <a href="/">Home</a>&nbsp;&nbsp;::&nbsp;&nbsp;
+	  <a href="about.html">About Us</a>&nbsp;&nbsp;::&nbsp;&nbsp;
+	  <a href="contact.html">Contact Us</a>&nbsp;&nbsp;::&nbsp;&nbsp;
+	  <a href="privacy.html">Privacy</a>&nbsp;&nbsp;::&nbsp;&nbsp;
+	  <a href="#">Back to Top</a>
+	</p>
+	<div id="copyright">
+	  <br />Webmaster: <%= mail_to "abainbri@andrew.cmu.edu", "Alex Bainbridge", :encode => "javascript" %>
+	    &nbsp;&nbsp;Copyright 2016
+	  <br /><br />
 	</div>
-
-</footer>
+</div>

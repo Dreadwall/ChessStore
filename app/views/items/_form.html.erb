@@ -11,6 +11,11 @@
       <%= f.input :inventory_level, input_html: {class: "avg"} %>
     <% end %>
     <%= f.input :reorder_level, input_html: {class: "avg"} %>
+    
+    
+    <%= f.label :photo %><br /> 
+    <%= f.file_field :photo %>
+
     <%= f.input :active %>
 
 

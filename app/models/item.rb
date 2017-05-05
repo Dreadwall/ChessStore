@@ -73,6 +73,9 @@ class Item < ActiveRecord::Base
     reorder_level >= inventory_level
   end
 
+
+  mount_uploader :photo, PhotoUploader
+
   private
   def is_destroyable?
     @destroyable = self.order_items.shipped.empty?

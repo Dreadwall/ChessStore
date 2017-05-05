@@ -12,9 +12,31 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require foundation.min
+//= require foundation
 //= require_tree .
 
-$(function() {
-  $(document).foundation('topbar', 'reflow');
+$(function(){ $(document).foundation(); });
+
+$('.input-number-increment').click(function() {
+  var $input = $(this).parents('.input-number-group').find('.input-number');
+  var val = parseInt($input.val(), 10);
+  $input.val(val + 1);
 });
+
+$('.input-number-decrement').click(function() {
+  var $input = $(this).parents('.input-number-group').find('.input-number');
+  var val = parseInt($input.val(), 10);
+  if(val > 0){
+  	$input.val(val - 1);
+  }	
+});
+
+$('.input-number').on('change', function() {
+   var $input = $(this).parents('.input-number-group').find('.input-number');
+   var val = parseInt($input.val(), 10);
+   if(val < 0){
+  	$input.val(0);
+   }	
+});
+
+$(".alert-box" ).fadeOut(5000);

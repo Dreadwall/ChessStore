@@ -1,0 +1,43 @@
+<% unless myitem.nil? %>
+  <div class="small-3 columns">
+      <% unless myitem.photo_url.nil? %>
+          <div class="image-hover-wrapper ">
+            <span class="image-hover-wrapper-banner"> <%= myitem.name.truncate(27) %></span>
+            <a href=<%=item_path(myitem) %> class="myhover"> <%= image_tag myitem.photo_url %> 
+            <span class="image-hover-wrapper-reveal">
+            <p style="bottom: -50px;">See Details<br><i class="fa fa-info" aria-hidden="true"></i></p>
+            </span>
+            </a>
+          </div>
+      <% else %>
+          <div class="image-hover-wrapper">
+            <span class="image-hover-wrapper-banner"> <%= myitem.name.truncate(27) %> </span>
+            <a href=<%=item_path(myitem) %>  class="myhover"> <%= image_tag 'img_not_available.png' %>
+            <span class="image-hover-wrapper-reveal">
+            <p style="bottom: -50px;">See Details<br><i class="fa fa-info" aria-hidden="true"></i></p>
+            </span>
+            </a>
+          </div>
+      <% end %>
+
+      <% if myitem.inventory_level > 0 %>
+          <p class="text-center">Unit(s)</p>
+          <div class="input-group input-number-group">
+            <div class="input-group-button">
+              <span class="input-number-decrement">-</span>
+            </div>
+            <input class="input-number" type="number" value="1" min="0" max="1000" style="display: inline;">
+            <div class="input-group-button " style="display: inline-table;">
+              <span class="input-number-increment">+</span>
+            </div>
+              <a href="#"><i class="fa fa-shopping-cart" style="padding-left: 0.2cm;"></i></a>
+          </div>
+
+
+      <% else %>
+        <p> Sold Out </p>
+      <% end %>
+
+
+  </div>
+<% end %>

@@ -1,0 +1,44 @@
+<div class="row">
+
+  <div class="small-2 small-centered columns loginCenter" >
+      <h3>Log In</h3>
+  </div>
+</div>
+</br>
+
+<div class="row">
+
+  <div class="medium-4 medium-centered columns" >
+     <%= form_tag sessions_path do %>
+
+  <div class="control-group">
+    <%= label_tag :email %>
+    <div class="controls">
+      <%= text_field_tag :email, params[:email] %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= label_tag :password %>
+    <div class="controls">
+      <%= password_field_tag :password %>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row">
+
+  <div class="medium-2 medium-centered columns " >
+    <a href="#" class="actions button">Log In</a>
+    <a href="#" class="button">Register</a>
+    <div class="actions loginCenter"><%= submit_tag "Log In" %></div>
+    <div class="actions loginCenter"><%= submit_tag "Register" %></div>    
+  </div>
+</div>
+  
+<% end %>
+  </div>
+</div>
+</br>

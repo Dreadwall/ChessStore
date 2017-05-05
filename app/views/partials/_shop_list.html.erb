@@ -1,0 +1,26 @@
+<% i = 0 %>
+<% while(i < items.length) %>
+  <div class="row">
+      <div class="small-2 columns" style="width: 12.66667%;">
+            &nbsp;
+      </div>
+
+    <% @item = items[i] %>
+    <% i = i +1 %>
+    <%= render partial: "partials/shop_list_cell", locals: {myitem: @item} %>
+
+    <% @item = items[i] %>
+    <% i = i +1 %>
+    <%= render partial: "partials/shop_list_cell", locals: {myitem: @item} %>
+
+    <% @item = items[i] %>
+    <% i = i +1 %>
+    <%= render partial: "partials/shop_list_cell", locals: {myitem: @item} %>
+
+    <div class="small columns">
+            &nbsp;
+    </div>
+
+  </div>
+  </br>
+<% end %>

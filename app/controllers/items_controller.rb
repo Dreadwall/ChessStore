@@ -7,6 +7,7 @@ class ItemsController < ApplicationController
     @pieces = Item.active.for_category('pieces').alphabetical.paginate(:page => params[:page]).per_page(10)
     @clocks = Item.active.for_category('clocks').alphabetical.paginate(:page => params[:page]).per_page(10)
     @supplies = Item.active.for_category('supplies').alphabetical.paginate(:page => params[:page]).per_page(10)    
+    @active_items = Item.active.alphabetical.to_a
     # get a list of any inactive items for sidebar
     @inactive_items = Item.inactive.alphabetical.to_a
   end
@@ -54,7 +55,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :color, :category, :weight, :inventory_level, :reorder_level, :active)
+    params.require(:item).permit(:name, :description, :color, :photo, :category, :weight, :inventory_level, :reorder_level, :active)
   end
   
 end
