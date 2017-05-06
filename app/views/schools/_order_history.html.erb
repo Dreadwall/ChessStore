@@ -3,10 +3,14 @@
     <h3>Order History</h3>
     <ul>
       <% @orders.each do |order| %>
-      	<%# if current_user.id == order.user_id %>
-        	<%= link_to 'Order Number ' + order.id.to_s , orders_path(order)   %>
+      	<% if ((!current_user.nil? && current_user.id == order.user_id) ||
+           admin? || manager?) %>
+        	<%= link_to 'Order Number ' + order.id.to_s , order_path(order)   %>
         	<br />
-        <%# end %>
+        <% else %>
+        	<p> Order by another user </p>
+        	
+        <% end %>
       <% end %>
     </ul>
   </div>

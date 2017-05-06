@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="medium-7 columns">
+    <h3><%= 'Order Number ' +  @order.id.to_s %></h3>
+<p>
+  <b>Date Placed</b>: <%= @order.date.strftime('%m/%d/%y') %>
+</p>
+<p>
+  <b>School</b>: <%= link_to @order.school.name, school_path(@order.school) %>
+</p>
+
+<p>				
+  <b>User</b>: <%= link_to @order.user.username, user_path(@order.user) %>
+</p>
+
+<p>
+  <b>Grand Total</b>: <%= number_to_currency @order.grand_total %>
+</p>
+
+<% unless @order.payment_receipt.nil? %>
+<p>
+  <b>Receipt</b>: <%= Base64.decode64(@order.payment_receipt) %>
+</p>
+<% end %>
+
+  </div>
+</div>

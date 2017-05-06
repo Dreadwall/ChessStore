@@ -1,0 +1,23 @@
+<% unless @order.order_items.empty? %>
+  <div class="panel clearfix">
+    <h3>Order Items</h3>
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="300">Name</th>
+        <th width="100">Quantity</th>
+        <th width="100">Ship Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order.order_items.each do |oi| %>
+        <tr>
+          <td><%= link_to oi.item.name, item_path(oi.item) %></td>
+          <td><%= oi.quantity %></td>
+          <td><%= oi.shipped_on.strftime('%m/%d/%y') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+<% end %>

@@ -1,8 +1,11 @@
 <div class="row">
-  <div class="medium-7 columns">
+  <div class="small-1 columns" style="width: 10%;" >
+   &nbsp;
+  </div>
+  <div class="medium-6 columns">
     <%= render :partial => "school_details" %>
   </div>
-  <div class="medium-2 columns">
+  <div class="medium-4 columns">
     	<%= render :partial => "order_history" unless @orders.empty?%>
   </div>
 </div>
@@ -11,5 +14,5 @@
 
 <% if admin? || manager? %>
 	<!-- Add buttons to list all, edit project or destroy object -->
-	<%= render partial: "partials/object_options", locals: {model_name: "item", object: @item}  %>
+	<%= render partial: "partials/object_options", locals: {model_name: "school", object: @school}  %>
 <% end %>

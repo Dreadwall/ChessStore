@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 #include CanCan::ControllerAdditions
- 
 
   def new
     @user = User.new
@@ -11,15 +10,21 @@ class UsersController < ApplicationController
     #authorize! :edit, @user
   end
 
+
   def show
     # get the price history for this item
-    @user = current_user
+    @user = User.find(params[:id])
     # everyone sees similar items in the sidebar
-    @recentOrders = @user.orders.chronological.to_a
+    @orders = @user.orders.chronological.to_a
   end
+
+
 
   def create
     @user = User.new(user_params)
+    if(!current_user.nil? && current_user.role != 'admin')
+      @user.role = 'customer'
+    end
     if @user.save
       session[:user_id] = @user.id
       redirect_to new_school_path, notice: "Thank you for signing up! Make sure to add your School!"
@@ -40,7 +45,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:password, :password_confirmation, :photo, :first_name, :last_name, :email, :role, :band_id, :active)
+    params.require(:user).permit(:password, :username, :password_confirmation, :photo, :first_name, :last_name, :email, :role, :band_id, :active)
   end
 
 end

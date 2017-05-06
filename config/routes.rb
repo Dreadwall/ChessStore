@@ -15,17 +15,15 @@ Rails.application.routes.draw do
   root :to => 'home#home'  
 
 
-  #Catch edgecase for person refreshing page after failing to create user
-  get 'users' => 'users#new', :as => :signupcatch
+
 
 
   get 'signup' => 'users#new', :as => :signup
-  get 'users/new' => 'users#new', :as => :new_user
-  get 'user/edit' => 'users#edit', :as => :edit_current_user
-  post 'users' => 'users#create'
-  patch 'users/:id' => 'users#update'
 
- # resources :users
+   get 'cart' => 'cart#show', :as => :cart
+   post 'add_item' => 'cart#add_item'
+   post 'edit_quantity' => 'cart#edit_quantity'
+   resources :users
  # resources :sessions
    resources :schools
    resources :orders
@@ -33,7 +31,6 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new', :as => :login
   post 'sessions' => 'sessions#create'
   get 'logout' => 'sessions#destroy', :as => :logout
-
-
+ 
 
 end

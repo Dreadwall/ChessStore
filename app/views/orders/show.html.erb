@@ -3,9 +3,9 @@
    &nbsp;
   </div>
   <div class="medium-6 columns">
-    <%= render :partial => "user_details" %>
+    <%= render :partial => "order_details" %>
   </div>
   <div class="medium-4 columns">
-      <%= render :partial => "schools/order_history" unless @orders.empty?%>
+      <%= render :partial => "order_items" unless @order.order_items.empty?%>
   </div>
 </div>

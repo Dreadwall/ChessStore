@@ -18,10 +18,11 @@
     <ul class="menu">
          <% if logged_in? %>
             <% if customer? %>
-                <li><a href="#"></a><i class="fa fa-shopping-cart fa-3x"></i></li>
+                <li><a href=<%=cart_path%>><i class="fa fa-shopping-cart fa-2x"></i></a></li>
             <% end %>
             <li> <%= link_to 'Logout', logout_path %> </li>
-            <li>[<%= current_user.proper_name %>:<%= current_user.role %>]</li>
+           
+            <li><%= link_to 'User: ' + current_user.username, user_path(current_user) %></li>
         <% else %>
             <div style="padding-top: 0.5cm; padding-right: 0.5cm"> <%= link_to 'Login', login_path %></div>
         <% end %>

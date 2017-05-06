@@ -39,6 +39,24 @@ $('.input-number').on('change', function() {
    }	
 });
 
+
+$('.cart_add').click(function() {
+  var $input = $(this).parents('.input-number-group').find('.input-number');
+  var val = parseInt($input.val(), 10);
+  alert("Hello! I am an alert box!!");
+  
+
+  $input.val(0);
+});
+
+
+
+
+
+
+
+
+
 $(".alert-box" ).fadeOut(5000);
 
 // Get the modal
