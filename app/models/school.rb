@@ -13,7 +13,7 @@ class School < ActiveRecord::Base
   scope :inactive,      -> { where(active: false) }
   
   # Validations
-  validates_presence_of :name, :street_1
+  validates_presence_of :name, :street_1, :zip
   validates_format_of :zip, with: /\A\d{5}\z/, message: "should be five digits long"
   validates_inclusion_of :state, in: STATES_LIST.map{|key, value| value}, message: "is not an option"
   validates_numericality_of :min_grade, greater_than_or_equal_to: 0, less_than_or_equal_to: 12, only_integer: true, allow_blank: true

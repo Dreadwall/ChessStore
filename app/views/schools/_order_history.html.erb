@@ -1,0 +1,13 @@
+<% unless @orders.empty? %>
+  <div class="panel clearfix">
+    <h3>Order History</h3>
+    <ul>
+      <% @orders.each do |order| %>
+      	<%# if current_user.id == order.user_id %>
+        	<%= link_to 'Order Number ' + order.id.to_s , orders_path(order)   %>
+        	<br />
+        <%# end %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -30,11 +30,9 @@
 
 <div class="row">
 
-  <div class="medium-2 medium-centered columns " >
-    <a href="#" class="actions button">Log In</a>
-    <a href="#" class="button">Register</a>
-    <div class="actions loginCenter"><%= submit_tag "Log In" %></div>
-    <div class="actions loginCenter"><%= submit_tag "Register" %></div>    
+  <div class="medium-2 medium-centered columns loginCenter" >
+    <div class="actions"><%= submit_tag "Log In", class: "button" %></div>
+    <div class="button loginCenter"><%= link_to 'Register', new_user_path, method: :get %></div>
   </div>
 </div>
   

@@ -4,12 +4,65 @@
 <% else %>
   <h3>Available Items at the Chess Warehouse</h3>
 
-  <%= render partial: "current_items", locals: {items: @boards, item_type: "boards"}  %>
 
-  <%= render partial: "current_items", locals: {items: @pieces, item_type: "pieces"} %>
+  <ul class="accordion" data-accordion data-allow-all-closed="true">
+	  
+  	  <% unless @boards.empty? %>
+	  <li class="accordion-item " data-accordion-item>
+	    <!-- Accordion tab title -->
+	    <a href="#" class="accordion-title">Boards</a>
 
-  <%= render partial: "current_items", locals: {items: @clocks, item_type: "clocks"} %>
+	    <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
+	    <div class="accordion-content" data-tab-content>
+	    	 <%= render partial: "current_items", locals: {items: @boards, item_type: "boards"}  %>
+	    </div>
+	  </li>
+	  <% end %>
+	  
+	  <% unless @pieces.empty? %>
+	  <li class="accordion-item " data-accordion-item>
+	    <!-- Accordion tab title -->
+	    <a href="#" class="accordion-title">Pieces</a>
 
-  <%= render partial: "current_items", locals: {items: @supplies, item_type: "supplies"} %>
+	    <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
+	    <div class="accordion-content" data-tab-content>
+	    	   <%= render partial: "current_items", locals: {items: @pieces, item_type: "pieces"} %>
+	    </div>
+	  </li>
+	  <% end %>
+
+
+	   <% unless @clocks.empty? %>
+	  <li class="accordion-item " data-accordion-item>
+	    <!-- Accordion tab title -->
+	    <a href="#" class="accordion-title">Clocks</a>
+
+	    <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
+	    <div class="accordion-content" data-tab-content>
+	    	 <%= render partial: "current_items", locals: {items: @clocks, item_type: "clocks"} %>
+	    </div>
+	  </li>
+	  <% end %>
+
+
+	  <% unless @supplies.empty? %>
+	  <li class="accordion-item " data-accordion-item>
+	    <!-- Accordion tab title -->
+	    <a href="#" class="accordion-title">Supplies</a>
+
+	    <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
+	    <div class="accordion-content" data-tab-content>
+	    	  <%= render partial: "current_items", locals: {items: @supplies, item_type: "supplies"} %>
+	    </div>
+	  </li>
+	  <% end %>
+  </ul>
+ 
+
+
+
+  
+
+ 
 
 <% end %>

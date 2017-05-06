@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="medium-7 columns">
+    <%= render :partial => "school_details" %>
+  </div>
+  <div class="medium-2 columns">
+    	<%= render :partial => "order_history" unless @orders.empty?%>
+  </div>
+</div>
+
+
+
+<% if admin? || manager? %>
+	<!-- Add buttons to list all, edit project or destroy object -->
+	<%= render partial: "partials/object_options", locals: {model_name: "item", object: @item}  %>
+<% end %>
