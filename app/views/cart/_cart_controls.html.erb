@@ -1,0 +1,31 @@
+<div id="cartControls">
+	<div class="row">
+	  <div class="small-1 columns" style="width: 10%;" >
+	   &nbsp;
+	  </div>
+	  <% if !@subtotal.nil? && @subtotal > 0 %>
+		  <div class="small-3 columns" >
+		  
+	   		<h5>Subtotal: <%= number_to_currency @subtotal %> </h5>
+	   		<h5>Shipping: <%= number_to_currency @shipping %></h5>
+	   		<h5>Grand Total: <%= number_to_currency(@shipping.to_f + @subtotal.to_f) %></h5>
+	   	  <% else %>
+	   	  <div class="small-6 columns" >
+	   	  	<p> Make sure to add some items to your cart! </p>
+	   	  <% end %>
+	  </div>
+
+	  <div class="small-2 columns" >
+	  </br>
+	  </br>
+	  	  <% if !@subtotal.nil? && @subtotal > 0 %>
+	   		<a href="#" class="button">Buy!</a>
+	   		<% end %>
+	  </div>
+	  
+
+	  <div class="small-1 columns" >
+	   &nbsp;
+	  </div>
+	</div>
+</div>

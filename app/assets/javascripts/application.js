@@ -43,21 +43,24 @@ $('.input-number').on('change', function() {
 function myFunction(id) {
     var popup = document.getElementById("myPopup"+id);
     popup.classList.toggle("show");
-}
+};
 
 
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+};
+
+
+
+async function myHandle(id){
+   await sleep(1000);
+   myFunction(id);
+   await sleep(2000);
+   myFunction(id);
 }
 
-async function demo() {
-  console.log('Taking a break...');
-  await sleep(2000);
-  console.log('Two second later');
-}
-
-
+// Make sure that browser is up to date for new async functionality
 async function add_cart_orderItem(id, obj) {  
   var $input = $(obj).parents('.input-number-group').find('.input-number');
   var val = parseInt($input.val(), 10);
@@ -66,13 +69,11 @@ async function add_cart_orderItem(id, obj) {
         type: "POST",
         url: "/add_item",
         data: { item_id:id, quantity: val},
+         success: myHandle(id)
       });
     $input.val(0);
-    myFunction(id);
-    await sleep(2000);
-    myFunction(id);
   }
-}
+};
 
 
 function remove_cart_Orderitem(id, obj) {
@@ -81,7 +82,7 @@ function remove_cart_Orderitem(id, obj) {
         url: "/remove_item",
         data: { item_id:id},
       });
-}
+};
 
 
 

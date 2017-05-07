@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
    get 'cart' => 'cart#show', :as => :cart
    post 'add_item' => 'cart#add_item'
-   post 'edit_quantity' => 'cart#edit_quantity'
+   post 'remove_item' => 'cart#remove_item'
    resources :users
  # resources :sessions
    resources :schools

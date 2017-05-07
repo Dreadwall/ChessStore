@@ -15,7 +15,7 @@
           <td><%= number_to_currency oi.item.current_price %></td>
           <td><%= oi.quantity %></td>
           <td><a class="cart_rem" id=<%= oi.item.id%>><i id=<%= oi.item.id%> 
-            onclick="remove_cart_Orderitem(this.id, this)" class="fa fa-times" ></i></a> </td>
+            onclick="remove_cart_Orderitem(this.id, this)" class="fa fa-times" remote: true></i></a> </td>
         </tr>
       <% end %>
     </tbody>

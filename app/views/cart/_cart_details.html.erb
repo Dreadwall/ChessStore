@@ -1,0 +1,15 @@
+<div id="myCartAccordian" >
+	<ul class="accordion" data-accordion data-allow-all-closed="true">
+		  <% unless @cartItems.nil? || @cartItems.empty? %>
+	  <li class="accordion-item " data-accordion-item>
+	    <!-- Accordion tab title -->
+	    <a href="#" class="accordion-title"><h5>Cart</h5></a>
+
+	    <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
+	    <div class="accordion-content" data-tab-content>
+	    	 <%= render partial: "current_items", locals: {items: @cartItems, item_type: "boards"}  %>
+	    </div>
+	  </li>
+	  <% end %>
+	</ul>
+</div>
