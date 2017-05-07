@@ -40,47 +40,20 @@ $('.input-number').on('change', function() {
 });
 
 
-$('.cart_add').click(function() {
-  var $input = $(this).parents('.input-number-group').find('.input-number');
+function test(id, obj) {  
+  var $input = $(obj).parents('.input-number-group').find('.input-number');
   var val = parseInt($input.val(), 10);
-  alert("Hello! I am an alert box!!");
-  
-
-  $input.val(0);
-});
-
-
-
-
-
+  if(val > 0){
+    $.ajax({
+        type: "POST",
+        url: "/add_item",
+        data: { id:id, quantity: val},
+      });
+    $input.val(0);
+  }
+}
 
 
 
 
 $(".alert-box" ).fadeOut(5000);
-
-// Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-close.onclick = function() {
-    modal.style.display = "none";
-};
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-};

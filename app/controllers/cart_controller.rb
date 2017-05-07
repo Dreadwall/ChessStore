@@ -3,8 +3,7 @@ class CartController < ApplicationController
    def show
      @user = current_user
      @cartItems = get_list_of_items_in_cart
-     @subtotal = calculate_cart_items_cost
-     @shipping = calculate_cart_shipping
+    
   end
 
 
@@ -15,11 +14,14 @@ class CartController < ApplicationController
   		begin
   			quantity = params[:quantity].to_s.to_f
   			item_id = params[:item_id].to_s
-  			add_item_to_cart(item_id, quantity)
+  			if(quantity > 0)
+	  			add_item_to_cart(item_id, quantity)
+	  			flash[:notice] = "Item added to cart"
+	  		end
   		rescue Exception
   			flash[:error] = "An error occured adding to cart."
+  		end
   	end
-
   end
 
 
@@ -35,8 +37,8 @@ class CartController < ApplicationController
   			end
   		rescue Exception
   			flash[:error] = "An error occured adding to cart."
+  		end
   	end
   end
-
 
 end
