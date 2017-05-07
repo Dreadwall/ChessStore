@@ -47,13 +47,13 @@ function test(id, obj) {
     $.ajax({
         type: "POST",
         url: "/add_item",
-        data: { id:id, quantity: val},
+        data: { item_id:id, quantity: val},
       });
     $input.val(0);
   }
 }
 
-
+$('#myflash').replaceWith('<%= j render("partials/flash") %>');
 
 
 $(".alert-box" ).fadeOut(5000);

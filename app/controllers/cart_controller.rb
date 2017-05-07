@@ -1,6 +1,7 @@
 class CartController < ApplicationController
    include ChessStoreHelpers
    def show
+   	create_cart
      @user = current_user
      @cartItems = get_list_of_items_in_cart
     
@@ -10,6 +11,7 @@ class CartController < ApplicationController
 
 
   def add_item
+  	create_cart
   	unless params[:quantity].nil?
   		begin
   			quantity = params[:quantity].to_s.to_f
@@ -26,6 +28,7 @@ class CartController < ApplicationController
 
 
   def edit_quantity
+  	create_cart
   	unless params[:quantity].nil?
   		begin
   			quantity = params[:quantity].to_s.to_f
