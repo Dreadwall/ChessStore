@@ -1,0 +1,220 @@
+diff --git a/app/assets/javascripts/application.js b/app/assets/javascripts/application.js
+index fc57cbc..0ac560e 100644
+--- a/app/assets/javascripts/application.js
++++ b/app/assets/javascripts/application.js
+@@ -58,7 +58,7 @@ async function demo() {
+ }
+ 
+ 
+-async function add_cart_orderItem(id, obj) {  
++async function test(id, obj) {  
+   var $input = $(obj).parents('.input-number-group').find('.input-number');
+   var val = parseInt($input.val(), 10);
+   if(val > 0){
+@@ -69,20 +69,14 @@ async function add_cart_orderItem(id, obj) {
+       });
+     $input.val(0);
+     myFunction(id);
++    console.log('Taking a break...');
+     await sleep(2000);
+     myFunction(id);
++    console.log('Two second later');
+   }
+ }
+ 
+ 
+-function remove_cart_Orderitem(id, obj) {
+-  $.ajax({
+-        type: "POST",
+-        url: "/remove_item",
+-        data: { item_id:id},
+-      });
+-}
+-
+ 
+ 
+ 
+diff --git a/app/controllers/cart_controller.rb b/app/controllers/cart_controller.rb
+index 94bd519..8cc5350 100644
+--- a/app/controllers/cart_controller.rb
++++ b/app/controllers/cart_controller.rb
+@@ -4,8 +4,7 @@ class CartController < ApplicationController
+    	create_cart
+      @user = current_user
+      @cartItems = get_list_of_items_in_cart
+-     @subtotal = calculate_cart_items_cost
+-     @shipping = calculate_cart_shipping
++    
+   end
+ 
+ 
+@@ -26,19 +25,6 @@ class CartController < ApplicationController
+   end
+ 
+ 
+-
+-  def remove_item
+-    create_cart
+-    unless params[:quantity].nil?
+-      begin
+-        item_id = params[:item_id].to_s
+-        remove_item_from_cart(item_id)
+-      rescue Exception
+-      end
+-    end
+-  end
+-
+-
+   def edit_quantity
+   	create_cart
+   	unless params[:quantity].nil?
+diff --git a/app/views/cart/_current_items.html.erb b/app/views/cart/_current_items.html.erb
+index 3590752..197a35a 100644
+--- a/app/views/cart/_current_items.html.erb
++++ b/app/views/cart/_current_items.html.erb
+@@ -5,17 +5,14 @@
+         <th width="300">Name</th>
+         <th width="100">Price</th>
+         <th width="100">Quantity</th>
+-        <th width="100">Remove</th>
+       </tr>
+     </thead>
+     <tbody>
+       <% items.each do |oi| %>
+-        <tr class="cartrow">
++        <tr>
+           <td><%= link_to oi.item.name, item_path(oi.item) %></td>
+           <td><%= number_to_currency oi.item.current_price %></td>
+           <td><%= oi.quantity %></td>
+-          <td><a class="cart_rem" id=<%= oi.item.id%>><i id=<%= oi.item.id%> 
+-            onclick="remove_cart_Orderitem(this.id, this)" class="fa fa-times" ></i></a> </td>
+         </tr>
+       <% end %>
+     </tbody>
+diff --git a/app/views/cart/add_item.html.erb b/app/views/cart/add_item.html.erb
+index e69de29..cc462cb 100644
+--- a/app/views/cart/add_item.html.erb
++++ b/app/views/cart/add_item.html.erb
+@@ -0,0 +1 @@
++<h3> what is going on </h3>
+\ No newline at end of file
+diff --git a/app/views/cart/remove_item.html.erb b/app/views/cart/remove_item.html.erb
+deleted file mode 100644
+index e69de29..0000000
+diff --git a/app/views/cart/show.html.erb b/app/views/cart/show.html.erb
+index 53ccbb1..a4ec3cc 100644
+--- a/app/views/cart/show.html.erb
++++ b/app/views/cart/show.html.erb
+@@ -41,20 +41,24 @@
+ 	  <div class="small-1 columns" style="width: 10%;" >
+ 	   &nbsp;
+ 	  </div>
+-  	  <div class="small-3 columns" >
+-	   		<h5>Subtotal: <%= number_to_currency @subtotal %> </h5>
+-	   		<h5>Shipping: <%= number_to_currency @shipping %></h5>
+-	   		<h5>Grand Total: <%= number_to_currency(@shipping.to_f + @subtotal.to_f) %></h5>
++  	  <div class="small-4 columns" >
++	   		<h5>Subtotal: </h5>
++	   		<h5>Shipping: </h5>
++	   		<h5>Grand Total: </h5>
++	  </div>
++	  <div class="small-1 columns" >
++	   &nbsp;
+ 	  </div>
++</div>
+ 
+-	  <div class="small-2 columns" >
+-	  </br>
+-	  </br>
+ 
+-	   	<a href="#" class="button">Buy!</a>
++ <div class="row">
++	  <div class="small-1 columns" style="width: 10%;" >
++	   &nbsp;
++	  </div>
++  	  <div class="small-4 columns" >
++	   		
+ 	  </div>
+-	  
+-
+ 	  <div class="small-1 columns" >
+ 	   &nbsp;
+ 	  </div>
+@@ -66,5 +70,3 @@
+ 
+ 
+ 
+-
+-
+diff --git a/app/views/partials/_shop.html.erb b/app/views/partials/_shop.html.erb
+index b732694..9dc7611 100644
+--- a/app/views/partials/_shop.html.erb
++++ b/app/views/partials/_shop.html.erb
+@@ -16,6 +16,28 @@
+   <div class="small-1 small-centered columns">
+   </div>
+ </div>
++</br>
++
++<div class="row">
++  <div class="small-2 columns" style="width: 25%;">
++      &nbsp;
++  </div>
++   <div class="small-2 columns" style="width: 12.66667%;">
++     <a href="#" class="button">Boards!</a>
++  </div>
++   <div class="small-2 columns" style="width: 12.66667%;">
++      <a href="#" class="button">Pieces</a>
++  </div>
++   <div class="small-2 columns" style="width: 12.66667%;">
++     <a href="#" class="button">Clocks!</a>
++  </div>
++   <div class="small-2 columns" style="width: 12.66667%;">
++     <a href="#" class="button">Supplies!</a>
++  </div>
++  <div class="small columns" style="width: 12.66667%;">
++     &nbsp;
++  </div>
++</div>
+ 
+ </br>
+   <%= render partial: "partials/shop_list", locals: {items: @active_items} %>
+diff --git a/app/views/partials/_shop_list_cell.html.erb b/app/views/partials/_shop_list_cell.html.erb
+index 535adea..571d25c 100644
+--- a/app/views/partials/_shop_list_cell.html.erb
++++ b/app/views/partials/_shop_list_cell.html.erb
+@@ -33,7 +33,7 @@
+               <div class="popup" >
+                 <span class="popuptext" id=<%= "myPopup" + myitem.id.to_s%>>Added to Cart!</span>
+               </div>
+-              <a class="cart_add" id=<%= myitem.id%>><i id=<%= myitem.id%> onclick="add_cart_orderItem(this.id, this)" class="fa fa-shopping-cart" style="padding-left: 0.2cm;"></i></a>
++              <a class="cart_add" id=<%= myitem.id%>><i id=<%= myitem.id%> onclick="test(this.id, this)" class="fa fa-shopping-cart" style="padding-left: 0.2cm;"></i></a>
+           </div>
+ 
+ 
+diff --git a/lib/helpers/cart.rb b/lib/helpers/cart.rb
+index dd15e46..80d7a98 100644
+--- a/lib/helpers/cart.rb
++++ b/lib/helpers/cart.rb
+@@ -27,7 +27,7 @@ module ChessStoreHelpers
+       end
+     end
+ 
+-    def edit_quantity_item_from_cart(item_id, quantity)
++    def remove_item_from_cart(item_id, quantity)
+       if session[:cart].keys.include?(item_id)
+         if(session[:cart][item_id] - quantity  <= 0)
+           session[:cart].delete(item_id)
+@@ -37,12 +37,6 @@ module ChessStoreHelpers
+       end
+     end
+ 
+-     def remove_item_from_cart(item_id, quantity)
+-      if session[:cart].keys.include?(item_id)
+-          session[:cart][item_id] = 0
+-      end
+-    end
+-
+     def calculate_cart_items_cost
+       total = 0
+       return total if session[:cart].empty? # skip if cart empty...

@@ -40,6 +40,7 @@ $('.input-number').on('change', function() {
 });
 
 
+<<<<<<< HEAD
 function myFunction(id) {
     var popup = document.getElementById("myPopup"+id);
     popup.classList.toggle("show");
@@ -59,6 +60,9 @@ async function demo() {
 
 
 async function add_cart_orderItem(id, obj) {  
+=======
+function test(id, obj) {  
+>>>>>>> parent of c7dbea1... ajax is hard
   var $input = $(obj).parents('.input-number-group').find('.input-number');
   var val = parseInt($input.val(), 10);
   if(val > 0){
@@ -68,6 +72,7 @@ async function add_cart_orderItem(id, obj) {
         data: { item_id:id, quantity: val},
       });
     $input.val(0);
+<<<<<<< HEAD
     myFunction(id);
     await sleep(2000);
     myFunction(id);
@@ -89,6 +94,11 @@ function remove_cart_Orderitem(id, obj) {
 
 
 
+=======
+  }
+}
+
+>>>>>>> parent of c7dbea1... ajax is hard
 $('#myflash').replaceWith('<%= j render("partials/flash") %>');
 
 

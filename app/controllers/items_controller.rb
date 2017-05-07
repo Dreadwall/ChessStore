@@ -10,7 +10,6 @@ class ItemsController < ApplicationController
     @active_items = Item.active.alphabetical.to_a
     # get a list of any inactive items for sidebar
     @inactive_items = Item.inactive.alphabetical.to_a
-    
   end
 
   def show
