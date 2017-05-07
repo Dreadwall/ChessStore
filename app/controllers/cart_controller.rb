@@ -18,10 +18,8 @@ class CartController < ApplicationController
   			item_id = params[:item_id].to_s
   			if(quantity > 0)
 	  			add_item_to_cart(item_id, quantity)
-	  			flash[:notice] = "Item added to cart"
 	  		end
   		rescue Exception
-  			flash[:error] = "An error occured adding to cart."
   		end
   	end
   end

@@ -40,7 +40,25 @@ $('.input-number').on('change', function() {
 });
 
 
-function test(id, obj) {  
+function myFunction(id) {
+    var popup = document.getElementById("myPopup"+id);
+    popup.classList.toggle("show");
+}
+
+
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function demo() {
+  console.log('Taking a break...');
+  await sleep(2000);
+  console.log('Two second later');
+}
+
+
+async function test(id, obj) {  
   var $input = $(obj).parents('.input-number-group').find('.input-number');
   var val = parseInt($input.val(), 10);
   if(val > 0){
@@ -50,8 +68,20 @@ function test(id, obj) {
         data: { item_id:id, quantity: val},
       });
     $input.val(0);
+    myFunction(id);
+    console.log('Taking a break...');
+    await sleep(2000);
+    myFunction(id);
+    console.log('Two second later');
   }
 }
+
+
+
+
+
+
+
 
 $('#myflash').replaceWith('<%= j render("partials/flash") %>');
 
