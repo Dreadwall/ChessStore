@@ -18,7 +18,7 @@ class CartController < ApplicationController
   			quantity = params[:quantity].to_s.to_f
   			item_id = params[:item_id].to_s
   			if(quantity > 0)
-	  			add_item_to_cart(item_id, quantity)
+	  			myadd_item_to_cart(item_id, quantity)
 	  		end
   		rescue Exception
   		end
