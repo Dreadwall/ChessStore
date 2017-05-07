@@ -27,13 +27,19 @@ module ChessStoreHelpers
       end
     end
 
-    def remove_item_from_cart(item_id, quantity)
+    def edit_quantity_item_from_cart(item_id, quantity)
       if session[:cart].keys.include?(item_id)
         if(session[:cart][item_id] - quantity  <= 0)
           session[:cart].delete(item_id)
         else
           session[:cart][item_id] -= quantity
         end
+      end
+    end
+
+     def remove_item_from_cart(item_id, quantity)
+      if session[:cart].keys.include?(item_id)
+          session[:cart][item_id] = 0
       end
     end
 

@@ -58,7 +58,7 @@ async function demo() {
 }
 
 
-async function test(id, obj) {  
+async function add_cart_orderItem(id, obj) {  
   var $input = $(obj).parents('.input-number-group').find('.input-number');
   var val = parseInt($input.val(), 10);
   if(val > 0){
@@ -69,13 +69,19 @@ async function test(id, obj) {
       });
     $input.val(0);
     myFunction(id);
-    console.log('Taking a break...');
     await sleep(2000);
     myFunction(id);
-    console.log('Two second later');
   }
 }
 
+
+function remove_cart_Orderitem(id, obj) {
+  $.ajax({
+        type: "POST",
+        url: "/remove_item",
+        data: { item_id:id},
+      });
+}
 
 
 

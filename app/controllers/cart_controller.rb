@@ -4,7 +4,8 @@ class CartController < ApplicationController
    	create_cart
      @user = current_user
      @cartItems = get_list_of_items_in_cart
-    
+     @subtotal = calculate_cart_items_cost
+     @shipping = calculate_cart_shipping
   end
 
 
@@ -22,6 +23,19 @@ class CartController < ApplicationController
   		rescue Exception
   		end
   	end
+  end
+
+
+
+  def remove_item
+    create_cart
+    unless params[:quantity].nil?
+      begin
+        item_id = params[:item_id].to_s
+        remove_item_from_cart(item_id)
+      rescue Exception
+      end
+    end
   end
 
 

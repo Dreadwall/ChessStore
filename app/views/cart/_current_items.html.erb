@@ -5,14 +5,17 @@
         <th width="300">Name</th>
         <th width="100">Price</th>
         <th width="100">Quantity</th>
+        <th width="100">Remove</th>
       </tr>
     </thead>
     <tbody>
       <% items.each do |oi| %>
-        <tr>
+        <tr class="cartrow">
           <td><%= link_to oi.item.name, item_path(oi.item) %></td>
           <td><%= number_to_currency oi.item.current_price %></td>
           <td><%= oi.quantity %></td>
+          <td><a class="cart_rem" id=<%= oi.item.id%>><i id=<%= oi.item.id%> 
+            onclick="remove_cart_Orderitem(this.id, this)" class="fa fa-times" ></i></a> </td>
         </tr>
       <% end %>
     </tbody>

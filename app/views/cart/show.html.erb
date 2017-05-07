@@ -41,28 +41,26 @@
 	  <div class="small-1 columns" style="width: 10%;" >
 	   &nbsp;
 	  </div>
-  	  <div class="small-4 columns" >
-	   		<h5>Subtotal: </h5>
-	   		<h5>Shipping: </h5>
-	   		<h5>Grand Total: </h5>
+  	  <div class="small-3 columns" >
+	   		<h5>Subtotal: <%= number_to_currency @subtotal %> </h5>
+	   		<h5>Shipping: <%= number_to_currency @shipping %></h5>
+	   		<h5>Grand Total: <%= number_to_currency(@shipping.to_f + @subtotal.to_f) %></h5>
 	  </div>
+
+	  <div class="small-2 columns" >
+	  </br>
+	  </br>
+
+	   	<a href="#" class="button">Buy!</a>
+	  </div>
+	  
+
 	  <div class="small-1 columns" >
 	   &nbsp;
 	  </div>
 </div>
 
 
- <div class="row">
-	  <div class="small-1 columns" style="width: 10%;" >
-	   &nbsp;
-	  </div>
-  	  <div class="small-4 columns" >
-	   		
-	  </div>
-	  <div class="small-1 columns" >
-	   &nbsp;
-	  </div>
-</div>
 
 
 
