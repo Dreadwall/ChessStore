@@ -26,6 +26,7 @@
           <% end %>
         </tbody>
       </table>
+      <div class="digg_pagination " id="digg_pagination"><%= will_paginate @schools, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %> </div>
     <% else %>
       <p>There are no active schools in our system at this time.</p>
     <% end %>

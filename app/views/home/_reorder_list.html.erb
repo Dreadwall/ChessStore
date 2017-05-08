@@ -19,6 +19,7 @@
       <% end %>
     </tbody>
   </table>
+  <div class="digg_pagination " id="digg_pagination"><%= will_paginate @items_to_reorder, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %> </div>
 <% else %>
   <p>There are no items that need to be reorder at this time.</p>
 <% end %>

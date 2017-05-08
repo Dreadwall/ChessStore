@@ -23,8 +23,18 @@ class OrdersController < ApplicationController
 	    	@order.date = Date.today
 	    	@order.grand_total = @subtotal + @shipping
 	    	@order.user = current_user
-	    	
-	    begin
+	    	if @order.grand_total == 0
+	    		 redirect_to cart_path, notice: "You don't have anything in your cart"
+	    		return
+	    	end
+
+	    	unless @order.expiration_year.nil?
+	    		@order.expiration_year = @order.expiration_year.to_f
+	    	end
+	    	unless @order.expiration_month.nil?
+	    		@order.expiration_month = @order.expiration_month.to_f
+	    	end
+	     begin
 		    if @order.save 
 		      @order.pay
 		      # save to cart
@@ -36,9 +46,9 @@ class OrdersController < ApplicationController
 		       @order.delete
 		       render action: 'new'
 		    end
-    	rescue Exception
-    		render action: 'new'
-    	end
+    	 rescue Exception
+    		 render action: 'new'
+    	 end
   end
 
 
