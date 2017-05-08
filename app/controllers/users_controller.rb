@@ -15,8 +15,9 @@ class UsersController < ApplicationController
     # get the price history for this item
     @user = User.find(params[:id])
     authorize! :show, @user
-    # everyone sees similar items in the sidebar
-    @orders = @user.orders.chronological.to_a
+    
+    #Id desc needed because of granularity with date.
+    @orders = @user.orders.order('date DESC, id DESC').paginate(:page => params[:page]).per_page(10)
   end
 
 

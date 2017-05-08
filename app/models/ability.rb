@@ -40,6 +40,7 @@ class Ability
         can :manage, Item
         can :manage, ItemPrice
         can :manage, Purchase
+        can :manage, Order
 
     elsif user.role? :customer
       can :show, User do |u|  
@@ -51,9 +52,12 @@ class Ability
       end
 
       can :create, Order
-      can :destroy, Order
+     
       can :show, Item
       can :show, Order do |o|
+        o.user_id == user.id
+      end
+      can :cancel, Order do |o|
         o.user_id == user.id
       end
 

@@ -15,7 +15,7 @@ class CartController < ApplicationController
   	create_cart
   	unless params[:quantity].nil? || params[:item_id].nil?
   		begin
-  			quantity = params[:quantity].to_s.to_f
+  			quantity = params[:quantity].to_s.to_i
   			item_id = params[:item_id].to_s
   			if(quantity > 0)
 	  			myadd_item_to_cart(item_id, quantity)
@@ -54,7 +54,7 @@ class CartController < ApplicationController
   	create_cart
   	unless params[:quantity].nil?
   		begin
-  			quantity = params[:quantity].to_s.to_f
+  			quantity = params[:quantity].to_s.to_i
   			item_id = params[:item_id].to_s
   			if(quantity < 0)
   				remove_item_from_cart(item_id, quantity)

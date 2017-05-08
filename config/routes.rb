@@ -28,6 +28,8 @@ Rails.application.routes.draw do
    resources :schools
    resources :orders
   
+
+  get 'cancel/:id' => 'orders#cancel', :as => :cancel
   get 'login' => 'sessions#new', :as => :login
   post 'sessions' => 'sessions#create'
   get 'logout' => 'sessions#destroy', :as => :logout

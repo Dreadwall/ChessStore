@@ -8,10 +8,7 @@ class ApplicationController < ActionController::Base
     redirect_to home_path
   end
 
-   # handle missing pages the BSG way...
-  rescue_from ActiveRecord::RecordNotFound do |exception|
-    render template: 'errors/not_found'
-  end
+
 
   private
   def current_user

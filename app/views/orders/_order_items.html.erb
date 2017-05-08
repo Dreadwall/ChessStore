@@ -1,4 +1,4 @@
-<% unless @order.order_items.empty? %>
+ <% unless @order.order_items.empty? %>
   <div class="panel clearfix">
     <h3>Order Items</h3>
     <table class="table table-striped">
@@ -14,7 +14,11 @@
         <tr>
           <td><%= link_to oi.item.name, item_path(oi.item) %></td>
           <td><%= oi.quantity %></td>
+          <% unless oi.shipped_on.nil? %>
           <td><%= oi.shipped_on.strftime('%m/%d/%y') %></td>
+          <% else %>
+            <td> <p> Not yet shipped </p> </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

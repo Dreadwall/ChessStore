@@ -10,6 +10,16 @@ class OrdersController < ApplicationController
 		authorize! :show, @order
 	end
 
+	def cancel
+		@order = Order.find(params[:id])
+		authorize! :cancel, @order
+		if @order.notshipped? && @order.destroy
+			redirect_to user_path(current_user), notice: "Your entire order has been cancelled."
+		else
+			redirect_to order_path(@order), notice: "Sorry, one or more of the items have shipped already."
+		end
+	end
+
 	def new
 		@order = Order.new
 		@user = current_user
@@ -37,16 +47,17 @@ class OrdersController < ApplicationController
 	    	unless @order.expiration_month.nil?
 	    		@order.expiration_month = @order.expiration_month.to_f
 	    	end
+	    	 
+
 	     begin
 		    if @order.save 
+			  save_each_item_in_cart(@order)
 		      @order.pay
-		      # save to cart
-		      save_each_item_in_cart(@order)
+		     
 		      clear_cart
-		      redirect_to home_path, notice: "Checkout Complete."
+		      redirect_to order_path(@order), notice: "Checkout Complete. "
 
 		    else
-		       @order.delete
 		       render action: 'new'
 		    end
     	 rescue Exception

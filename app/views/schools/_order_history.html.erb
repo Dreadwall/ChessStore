@@ -1,6 +1,6 @@
 <% unless @orders.empty? %>
   <div class="panel clearfix">
-    <h3>Order History</h3>
+    <h4>Order History</h4>
     <ul>
       <% @orders.each do |order| %>
       	<% if ((!current_user.nil? && current_user.id == order.user_id) ||
@@ -15,3 +15,5 @@
     </ul>
   </div>
 <% end %>
+
+ <div class="digg_pagination " id="digg_pagination"><%= will_paginate @orders, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %> </div>

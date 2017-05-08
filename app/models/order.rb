@@ -26,6 +26,11 @@ class Order < ActiveRecord::Base
     joins(:order_items).where("order_items.shipped_on IS NULL").uniq!
   end
 
+
+  def notshipped?
+    Order.not_shipped.includes(self)
+  end
+
   # Validations
   # validates_date :date  # not essential, but permittable
   validates_numericality_of :grand_total, greater_than_or_equal_to: 0, allow_blank: true
