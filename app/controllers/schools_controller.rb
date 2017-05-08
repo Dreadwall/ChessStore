@@ -12,7 +12,7 @@ class SchoolsController < ApplicationController
     @school = School.new(school_params)
     
     if @school.save
-      redirect_to school_path, notice: "Successfully added #{@school.name} as a school."
+      redirect_to schools_path, notice: "Successfully added #{@school.name} as a school."
     else
       render action: 'new'
     end

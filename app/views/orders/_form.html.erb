@@ -78,7 +78,8 @@
         <div class="medium-4 columns" >
               <p>
                <%= f.label :school %><br />
-               <%= f.select :school, collection: School.active %>
+               <% school_array = School.all.map { |school| [school.name + ' [' + school.zip + ']', school.id] } %>
+               <%= f.select :school_id, school_array %>
               </p>
         </div>
        
