@@ -41,11 +41,13 @@ class OrdersController < ApplicationController
 	    		return
 	    	end
 
+	    	
+
 	    	unless @order.expiration_year.nil?
-	    		@order.expiration_year = @order.expiration_year.to_f
+	    		@order.expiration_year = @order.expiration_year.to_i
 	    	end
 	    	unless @order.expiration_month.nil?
-	    		@order.expiration_month = @order.expiration_month.to_f
+	    		@order.expiration_month = @order.expiration_month.to_i
 	    	end
 	    	 
 
