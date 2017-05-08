@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 #include CanCan::ControllerAdditions
+  
+  def index
+    @users = User.alphabetical.active.paginate(:page => params[:page]).per_page(10)
+    authorize! :index, @user
+  end
 
   def new
     @user = User.new
@@ -7,7 +12,7 @@ class UsersController < ApplicationController
 
   def edit
      @user = User.find(params[:id])
-    #authorize! :edit, @user
+    authorize! :edit, @user
   end
 
 
@@ -28,8 +33,15 @@ class UsersController < ApplicationController
       @user.role = 'customer'
     end
     if @user.save
-      session[:user_id] = @user.id
-      redirect_to new_school_path, notice: "Thank you for signing up! Make sure to add your School!"
+      
+        @test = session[:user_id]
+        if(@test.nil?)
+           session[:user_id] = @user.id
+           redirect_to new_school_path, notice: "Thank you for signing up! Make sure to add your School!"
+        else
+          redirect_to users_path, notice: "User Created"
+        end
+    
     else
       flash[:error] = "This user could not be created."
       render "new"

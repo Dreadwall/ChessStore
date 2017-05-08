@@ -66,6 +66,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    chartkick (2.2.3)
     chronic (0.10.2)
     coderay (1.1.1)
     coffee-rails (4.1.1)
@@ -273,6 +274,7 @@ DEPENDENCIES
   cancancan (= 1.15.0)
   capybara
   carrierwave (= 1.0.0)
+  chartkick
   coffee-rails (~> 4.1.0)
   cucumber-rails
   database_cleaner

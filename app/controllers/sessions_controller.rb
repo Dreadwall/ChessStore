@@ -12,9 +12,14 @@
 
       user = User.find_by_email(params[:email])
       if user && User.authenticate(params[:email], params[:password])
-        session[:user_id] = user.id
-        create_cart
-        redirect_to home_path, notice: "Logged in!"
+       begin
+         a = User.find(session[:user_id])
+         redirect_to user_path, notice: "User Created!"
+       rescue Exception
+          session[:user_id] = user.id
+          create_cart
+          redirect_to home_path, notice: "Logged in!"
+        end
       else
         redirect_to login_path, notice: "Email or password is invalid"
       end

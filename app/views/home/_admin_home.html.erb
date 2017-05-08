@@ -1,16 +1,33 @@
 <div class="row">
 
 	<div class="medium-7 medium-centered columns">
-	<h3> Hello Admin</h3>
+	<h3> Hello <%=@user.name %></h3>
 	</div>
 </div>
 
 
 <div class="row">
+<div class="small-1 columns" style="width: 10%;" >
+   &nbsp;
+  </div>
 
-	<div class="medium-4 medium-centered columns">
-		<%= image_tag("main1_done.jpg", :alt => "About Us") %> 
+	<div class="medium-4 columns">
+		<h4> Items by Type </h4>
+		<%= pie_chart @all_items.group(:category).count %>
 	</div>
+	<div class="small-1 columns" style="width: 10%;" >
+   &nbsp;
+  </div>
+
+	<div class="medium-4 columns">
+		<h4> Orders This Month</h4>
+		<%= column_chart Order.where('date > ?', Time.now.beginning_of_month).group(:date).count %>
+	</div>
+
+<div class="small-1 columns" style="width: 10%;" >
+   &nbsp;
+  </div>
+
 </div>
  
 
@@ -23,9 +40,11 @@
 
 <div class="row">
 	<div class="medium-6 medium-centered columns">
-		<p> The Chess Warehouse exists to serve schools with all their chess needs.
-		Please feel free to reach out to us with any questions you have! </p>
-		Enjoy the store! </p>
+		<%= link_to 'Schools', schools_path, :class => 'button radius' %>
+		<%= link_to 'Orders', orders_path, :class => 'button radius' %>
+		<%= link_to 'Users', users_path, :class => 'button radius' %>
+		<%= link_to 'Purchases', purchases_path, :class => 'button radius' %>
+		<%= link_to 'Item Prices', item_prices_path, :class => 'button radius' %>
 	</div>
 </div>
 

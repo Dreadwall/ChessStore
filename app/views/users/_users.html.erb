@@ -1,0 +1,24 @@
+<% if @users.empty? %>
+  <h4>No orders at this time.</h4>
+<% else %>
+  <h4>Users</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="225">Username</th>
+        <th width="150">Full Name</th>
+        <th width="150">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= link_to user.username, user_path(user) %></td>
+          <td><%= user.name %></td>
+          <td><%= user.role %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<p>&nbsp;</p>

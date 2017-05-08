@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 	include ChessStoreHelpers
 	def index
-		 @orders = Order.chronological.to_a
+		 @orders = Order.chronological.paginate(:page => params[:page]).per_page(10)
 		 authorize! :index, @orders
 	end
 

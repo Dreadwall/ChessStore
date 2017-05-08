@@ -1,0 +1,24 @@
+<% if @orders.empty? %>
+  <h4>No orders at this time.</h4>
+<% else %>
+  <h4>Recent orders</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="225">Order Number</th>
+        <th width="150">User</th>
+        <th width="150">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= link_to order.id, order_path(order) %></td>
+          <td><%= link_to order.user.username, user_path(order.user) %></td>
+          <td><%= order.date.strftime('%m/%d/%y') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<p>&nbsp;</p>
