@@ -20,8 +20,8 @@
           </div>
       <% end %>
 
-      <% if myitem.inventory_level > 0 %>
-          <p class="text-center">Unit(s)</p>
+      <% if myitem.inventory_level > 0 && customer? %>
+          <p class="text-center"></p>
           <div class="input-group input-number-group">
             <div class="input-group-button">
               <span class="input-number-decrement">-</span>
@@ -37,7 +37,9 @@
           </div>
 
 
-      <% else %>
+      <% elsif guest? %>
+        <p> Please login to buy </p>
+      <% elsif customer? %>
         <p> Sold Out </p>
       <% end %>
 

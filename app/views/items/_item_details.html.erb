@@ -17,14 +17,17 @@
 </p>
 
 
-<% if admin? || manager? %>
+
     <p>
       <b>Price</b>: <%= @item.current_price.nil? ? 'N/A' : number_to_currency(@item.current_price) %>
     </p>
-
+<% if admin? || manager? || shipper? %>
     <p>
       <b>Inventory Level</b>: <%= @item.inventory_level.nil? ? 'N/A' : @item.inventory_level %>
     </p>
+<% end %>
+
+<% if admin? || manager? %>
 
     <p>
       <b>Reorder Level</b>: <%= @item.reorder_level.nil? ? 'N/A' : @item.reorder_level %>

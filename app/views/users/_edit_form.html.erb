@@ -4,7 +4,7 @@
   </div>
   <div class="medium-8 columns" >
       <%= form_for @user, :html => { :multipart => true }  do |f| %>
-      	<% if @user.errors.any? %>
+        <% if @user.errors.any? %>
           <div id="error_explanation">
             <p><%= pluralize(@user.errors.messages.map{|key, val| key.to_s + ' ' + val[0]}.count, 
               "error") %> prohibited this user from being saved:<p>
@@ -29,7 +29,7 @@
 
 
   <div class="medium-4 columns" >
-      	<p>
+        <p>
           <%= f.label :first_name %><br />
           <%= f.text_field :first_name %>
         </p>
@@ -55,10 +55,7 @@
    &nbsp;
   </div>
   <div class="medium-4 columns" >
-        <p>
-          <%= f.label :username, "Username" %><br />
-          <%= f.text_field :username %>
-        </p>
+       
   </div>
 
   <div class="medium-4 columns" >
@@ -80,13 +77,13 @@
   </div>
   <div class="medium-4 columns" >
         <p>
-          <%= f.label :password %><br />
+          <%= f.label 'Enter new password if desired' %><br />
           <%= f.password_field :password %>
         </p>
   </div>
   <div class="medium-4 columns" >
         <p>
-          <%= f.label :password_confirmation, "Confirm Password" %><br />
+          <%= f.label :password_confirmation, "Confirm New Password" %><br />
           <%= f.password_field :password_confirmation %>
         </p>
   </div>
@@ -96,7 +93,7 @@
 </div>
 
 
-<% if admin? %>
+<% if admin? || manager? %>
 <div class="row">
   <div class="medium-4 medium-centered columns" >
         <p>
@@ -104,8 +101,6 @@
         </p>
     </div>
 </div>
-<% else %>
-  <%= f.hidden_field :role, :value => 'customer'%>
   
 <% end %>
 
@@ -139,7 +134,7 @@
   </div>
   <div class="medium-4 columns " >
          <p><%= f.submit (@user.new_record? ? "Sign up" : "Update"), :class => "button" %>
-            <%= link_to 'Cancel', login_path, :class => 'button alert radius' %>
+            <%= link_to 'Cancel', user_path(@user), :class => 'button alert radius' %>
          </p>
     </div>
 

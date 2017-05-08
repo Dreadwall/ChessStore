@@ -10,7 +10,6 @@ class ItemsController < ApplicationController
     @active_items = Item.active.alphabetical.paginate(:page => params[:page]).per_page(9)
     # get a list of any inactive items for sidebar
     @inactive_items = Item.inactive.alphabetical.to_a
-    
   end
 
   def show
@@ -22,9 +21,11 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    authorize! :new, @item
   end
 
   def edit
+    authorize! :edit, @item
   end
 
   def create
@@ -46,6 +47,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @item
     @item.destroy
     redirect_to items_path, notice: "Successfully removed #{@item.name} from the system."
   end

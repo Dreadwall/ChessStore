@@ -2,10 +2,12 @@ class OrdersController < ApplicationController
 	include ChessStoreHelpers
 	def index
 		 @orders = Order.chronological.to_a
+		 authorize! :index, @orders
 	end
 
 	def show
 		@order = Order.find(params[:id])
+		authorize! :show, @order
 	end
 
 	def new
@@ -14,6 +16,7 @@ class OrdersController < ApplicationController
 	    @cartItems = get_list_of_items_in_cart
 	    @subtotal = calculate_cart_items_cost
 	    @shipping = calculate_cart_shipping
+	    authorize! :new, @order
 	end	
 
 	def create

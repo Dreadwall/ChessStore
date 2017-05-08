@@ -1,10 +1,12 @@
 class ItemPricesController < ApplicationController
   def index
-    @active_items = Item.active.alphabetical.to_a
+    @active_items = Item.active.alphabetical.paginate(:page => params[:page]).per_page(10)
+    authorize! :index, @active_items
   end
 
   def new
     @item_price = ItemPrice.new
+    authorize! :new, @item_price
   end
 
   def create

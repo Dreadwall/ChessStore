@@ -2,3 +2,18 @@
                                                          primary: "current_item_prices", 
                                                          secondary: nil,
                                                          sidebar: nil} %>
+
+
+<div class="row">
+<div class="small-1 columns" style="width: 10%;" >
+   &nbsp;
+  </div>
+  <div class="medium-6 columns">
+    <div class="digg_pagination " id="digg_pagination">
+    <%= will_paginate @active_items, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %> </div>
+  </div>
+  <div class="small-1 columns" style="width: 10%;" >
+   &nbsp;
+  </div>
+</div>
+                                                     

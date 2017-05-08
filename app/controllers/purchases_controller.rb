@@ -1,10 +1,12 @@
 class PurchasesController < ApplicationController
   def index
-    @purchases = Purchase.chronological.to_a
+    @purchases = Purchase.chronological.paginate(:page => params[:page]).per_page(10)
+    authorize! :index, @purchases
   end
 
   def new
     @purchase = Purchase.new
+    authorize! :new, @purchase
   end
 
   def create

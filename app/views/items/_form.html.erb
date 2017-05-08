@@ -2,12 +2,25 @@
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Item</legend>
 
+    <% if @item.errors.any? %>
+          <div id="error_explanation">
+            <p><%= pluralize(@item.errors.messages.map{|key, val| key.to_s + ' ' + val[0]}.count, 
+              "error") %> prohibited this item from being saved:<p>
+
+            <ul>
+            <% @item.errors.messages.map{|key, val| key.to_s + ' ' + val[0]}.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
     <%= f.input :name, input_html: {class: "avg"} %>
     <%= f.input :description, input_html: { :rows => 4, class: "avg" } %>
     <%= f.input :category, collection: Item::CATEGORIES, include_blank: true, input_html: {class: "avg"} %>
     <%= f.input :color, input_html: {class: "avg"} %>
     <%= f.input :weight, input_html: {class: "avg"} %>
-    <% if controller.action_name == "new" %>
+    <% if controller.action_name != "edit" %>
       <%= f.input :inventory_level, input_html: {class: "avg"} %>
     <% end %>
     <%= f.input :reorder_level, input_html: {class: "avg"} %>

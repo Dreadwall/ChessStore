@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+     @user = User.find(params[:id])
     #authorize! :edit, @user
   end
 
@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   def show
     # get the price history for this item
     @user = User.find(params[:id])
+    authorize! :show, @user
     # everyone sees similar items in the sidebar
     @orders = @user.orders.chronological.to_a
   end
@@ -35,17 +36,17 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
+     @user = User.find(params[:id])
     #authorize! :update, @user
     if @user.update_attributes(user_params)
-      redirect_to(home_path, :notice => 'User was successfully updated.')
+      redirect_to(user_path(@user), :notice => 'User was successfully updated.')
     else
       render :action => "edit"
     end
   end
 
   def user_params
-    params.require(:user).permit(:password, :username, :password_confirmation, :photo, :first_name, :last_name, :email, :role, :band_id, :active)
+    params.require(:user).permit(:password, :username, :phone, :password_confirmation, :photo, :first_name, :last_name, :email, :role, :band_id, :active)
   end
 
 end
