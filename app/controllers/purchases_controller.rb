@@ -22,7 +22,9 @@ class PurchasesController < ApplicationController
     
     if @purchase.save
        @item = @purchase.item
-      redirect_to item_path(@item), notice: "Successfully added a purchase for #{@purchase.quantity} #{@purchase.item.name}."
+        respond_to do |format|
+          format.js
+        end
     else
       render action: 'new'
     end

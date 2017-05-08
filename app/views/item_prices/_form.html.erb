@@ -1,4 +1,4 @@
-<%= simple_form_for @item_price, html: { class: 'form-horizontal', multipart: true } do |f| %>
+<%= simple_form_for @item_price, remote:true, html: { class: 'form-horizontal', multipart: true } do |f| %>
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Price</legend>
 

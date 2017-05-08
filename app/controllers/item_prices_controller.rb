@@ -21,7 +21,11 @@ class ItemPricesController < ApplicationController
     @item_price.start_date = Date.current
     if @item_price.save
       @item = @item_price.item
-      redirect_to item_path(@item), notice: "Changed the price of #{@item.name}."
+      @price_history = @item.item_prices.chronological.to_a
+      respond_to do |format|
+          format.js
+        end
+    
     else
       render action: 'new'
     end
