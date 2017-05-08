@@ -1,0 +1,24 @@
+<div class="row">
+	<div class="medium-6 medium-centered columns">
+		<% unless @unshippedorders.empty? %>
+		  
+		  	  <% @unshippedorders.each do |order| %>
+			
+		   
+		    	<h3><%= 'Order ' + order.id.to_s %></h3>
+ 
+		    	 <% order.order_items = order.order_items.unshipped %>
+		    	 <%= render partial: "orders/order_items", locals: {order: order}  %>
+		    	 </br>
+		    	 </br>
+		     <% end %>
+
+		  </ul>
+		   
+		  
+		   <div class="digg_pagination " id="digg_pagination"><%= will_paginate @unshippedorders, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %> </div>
+		<% else %>
+			<p> No orders to ship right now! </p>
+		<% end %>
+	</div>
+</div>

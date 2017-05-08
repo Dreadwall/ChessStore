@@ -41,6 +41,7 @@ class Ability
         can :manage, ItemPrice
         can :manage, Purchase
         can :manage, Order
+        can :manage, OrderItem
 
     elsif user.role? :customer
       can :show, User do |u|  
@@ -80,6 +81,7 @@ class Ability
       can :show, School
       can :read, Item
       can :show, Item
+      can :ship, OrderItem
 
 
     else

@@ -28,7 +28,7 @@ Rails.application.routes.draw do
    resources :schools
    resources :orders
   
-
+  get 'ship/:id' => 'order_items#ship', :as => :ship
   get 'cancel/:id' => 'orders#cancel', :as => :cancel
   get 'login' => 'sessions#new', :as => :login
   post 'sessions' => 'sessions#create'
