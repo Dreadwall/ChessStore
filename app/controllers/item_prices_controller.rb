@@ -7,6 +7,13 @@ class ItemPricesController < ApplicationController
   def new
     @item_price = ItemPrice.new
     authorize! :new, @item_price
+     begin
+      @item = Item.find(params[:this_item_id])
+      if !@item.nil?
+        @item_price.item = @item
+      end
+     rescue Exception
+      end
   end
 
   def create

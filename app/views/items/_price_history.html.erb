@@ -7,6 +7,12 @@
       <% end %>
     </ul>
 
-    <%= link_to("Change Price", new_item_price_path(this_item_id: @item.id), class: 'button tiny radius') %>
+     <%= link_to(new_item_price_path(this_item_id: @item.id), id: 'new_price_link', class: 'button tiny radius', remote: true) do %>
+      <i class="fa fa-clipboard"></i>
+      &nbsp;Add New Price
+      <% end %>
+    
+
+    
   </div>
 <% end %>

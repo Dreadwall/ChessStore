@@ -6,6 +6,13 @@ class PurchasesController < ApplicationController
 
   def new
     @purchase = Purchase.new
+    begin
+      @item = Item.find(params[:item_id])
+      if !@item.nil?
+        @purchase.item = @item
+      end
+     rescue Exception
+      end
     authorize! :new, @purchase
   end
 
@@ -14,7 +21,8 @@ class PurchasesController < ApplicationController
     @purchase.date = Date.current
     
     if @purchase.save
-      redirect_to purchases_path, notice: "Successfully added a purchase for #{@purchase.quantity} #{@purchase.item.name}."
+       @item = @purchase.item
+      redirect_to item_path(@item), notice: "Successfully added a purchase for #{@purchase.quantity} #{@purchase.item.name}."
     else
       render action: 'new'
     end

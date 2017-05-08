@@ -1,1 +1,4 @@
 $('#ShipperInfo').replaceWith('<div id = "ShipperInfo" > <%= j render "home/shipper_dashboard" %> </div>');
+$('#OIInfo').replaceWith('<div id = "OIInfo" > <%= j render :partial => "orders/order_items", locals: {order: @order} %> </div>');
+
+

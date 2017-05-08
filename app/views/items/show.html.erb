@@ -3,7 +3,9 @@
    &nbsp;
   </div>
   <div class="small-6 columns">
-    <%= render :partial => "item_details" %>
+    <div id="mydetails" >
+      <%= render :partial => "item_details" %>
+    </div>
     <% if @item.inventory_level > 0 && customer? %>
           <p class="text-center"></p>
           <div class="input-group input-number-group">
@@ -29,7 +31,9 @@
   </div>
   <div class="small-4 columns">
   	<% if admin? || manager? %>
-    	<%= render :partial => "price_history" unless @price_history.empty?%>
+      <div id="myprices">
+    	 <%= render :partial => "price_history" unless @price_history.empty?%>
+      </div>
    	<% end %> 
     <%= render :partial => "similar_items" unless @similar_items.empty?%>
   </div>
@@ -39,5 +43,21 @@
 
 <% if admin? || manager? %>
 	<!-- Add buttons to list all, edit project or destroy object -->
+  <div class="row">
+    <div class="small-1 columns" style="width: 10%;" >
+      &nbsp;
+    </div>
+  <div class="small-6 columns">    
+    
+    <%= link_to(new_purchase_path(item_id: @item.id), id: 'new_purchase_link', class: 'button tiny radius', remote: true) do %>
+      <i class="fa fa-clipboard"></i>
+      &nbsp;Add New Purchase
+      <% end %>
+  </div>
+  <div class="small-1 columns" style="width: 10%;" >
+      &nbsp;
+    </div>
+  </div>
+
 	<%= render partial: "partials/object_options", locals: {model_name: "item", object: @item}  %>
 <% end %>

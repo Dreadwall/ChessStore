@@ -7,7 +7,7 @@
 		   
 		    	<h3><%= 'Order ' + order.id.to_s %></h3>
  
-		    	 <% order.order_items = order.order_items.unshipped %>
+		    	 <%# order.order_items = order.order_items.unshipped %>
 		    	 <%= render partial: "orders/order_items", locals: {order: order}  %>
 		    	 </br>
 		    	 </br>

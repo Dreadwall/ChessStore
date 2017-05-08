@@ -4,10 +4,11 @@ class OrderItemsController < ApplicationController
 		@order_item = OrderItem.find(params[:id])
 		authorize! :ship, @order_item
 		@order_item.shipped
-			@unshippedorders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
-			respond_to do |format|
-	          format.js
-	        end
+		@order = @order_item.order
+		@unshippedorders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
+		respond_to do |format|
+          format.js
+        end
 	     
 	end
 end
