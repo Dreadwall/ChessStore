@@ -101,6 +101,14 @@ class OrderTest < ActiveSupport::TestCase
       assert_equal 5.00, @markv_o2.shipping_costs
     end
     
+    should "say unshipped right" do
+      assert @ben_o1.notshipped?
+    end
+
+    should "sort with date, and then id" do
+      assert_equal [5, 3, 6, 2, 4, 1], Order.idealsort.map(&:id)
+    end
+
     should "correctly destroy an order that is unshipped" do
       order_id = @ben_o1.id
       assert_not_nil OrderItem.find_by_order_id(order_id)

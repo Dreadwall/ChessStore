@@ -40,6 +40,10 @@ class ItemPriceTest < ActiveSupport::TestCase
       assert_equal Date.current, @wtp3_w.end_date
     end
 
+    should "have good sort" do
+      assert_equal [5, 4, 11, 8, 3, 10, 7, 2, 9, 6, 1], ItemPrice.idealsort.map(&:id)
+    end
+
     should "have a working scope called current" do
       assert_equal [4.95, 8.95, 16.95], ItemPrice.current.all.map(&:price).sort
     end

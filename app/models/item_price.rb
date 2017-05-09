@@ -15,6 +15,7 @@ class ItemPrice < ActiveRecord::Base
   scope :for_item,      ->(item_id) { where(item_id: item_id) }
   scope :wholesale,     -> { where(category: "wholesale") }
   scope :manufacturer,  -> { where(category: "manufacturer") }
+  scope :idealsort, -> { order('start_date DESC, id DESC') }
 
   # Validations
   validates_numericality_of :price, greater_than_or_equal_to: 0

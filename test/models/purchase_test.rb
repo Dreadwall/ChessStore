@@ -31,6 +31,7 @@ class PurchaseTest < ActiveSupport::TestCase
       assert_equal @basic_pieces, Purchase.loss.all.first.item
     end
 
+
     should "have a working scope called chronological" do
       assert_equal ["Basic Analog Chess Clock","Basic Chess Pieces","Vinyl Chess Board - Green & White","Basic Chess Pieces","Vinyl Chess Board - Green & White"], Purchase.chronological.all.map{|p| p.item.name}
     end

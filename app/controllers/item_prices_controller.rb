@@ -19,16 +19,17 @@ class ItemPricesController < ApplicationController
   def create
     @item_price = ItemPrice.new(item_price_params)
     @item_price.start_date = Date.current
+     respond_to do |format|
     if @item_price.save
       @item = @item_price.item
-      @price_history = @item.item_prices.chronological.to_a
-      respond_to do |format|
+      @price_history = @item.item_prices.idealsort.paginate(:page => params[:page]).per_page(10)
+     
           format.html { redirect_to item_prices_path, notice: 'Item Price was successfully created.' }
           format.js
-        end
-    
     else
-      render action: 'new'
+        format.html { render action: 'new', notice: 'Item Price had an error.' }
+        format.json { render json: @item_price.errors, status: :unprocessable_entity }
+    end
     end
   end
 

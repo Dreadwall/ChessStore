@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
 
 
-  
+
 
   get 'signup' => 'users#new', :as => :signup
 
@@ -34,6 +34,6 @@ Rails.application.routes.draw do
   post 'sessions' => 'sessions#create'
   get 'logout' => 'sessions#destroy', :as => :logout
   
-  get 'cylon' => 'errors#cylon', as: :cylon
+  get 'cylon' => 'errors#cylon', as: :cylonw
   get '*a', to: 'errors#routing'
 end

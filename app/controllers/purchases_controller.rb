@@ -19,15 +19,15 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
     @purchase.date = Date.current
-    
+    respond_to do |format|
     if @purchase.save
        @item = @purchase.item
-        respond_to do |format|
           format.html { redirect_to purchases_path, notice: 'Purchase was successfully created.'}
           format.js
-        end
     else
-      render action: 'new'
+      format.html { render action: 'new', notice: 'Purchase had an error.'}
+      format.json { render json: @purchase.errors, status: :unprocessable_entity }
+    end
     end
   end
 

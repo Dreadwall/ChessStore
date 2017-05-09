@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     authorize! :show, @user
     
     #Id desc needed because of granularity with date.
-    @orders = @user.orders.order('date DESC, id DESC').paginate(:page => params[:page]).per_page(10)
+    @orders = @user.orders.idealsort.paginate(:page => params[:page]).per_page(10)
   end
 
 

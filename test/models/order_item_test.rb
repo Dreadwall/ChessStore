@@ -51,6 +51,9 @@ class OrderItemTest < ActiveSupport::TestCase
     should "return nil for a subtotal for a future date" do
       assert_nil @markv_o2_1.subtotal(1.year.from_now.to_date)
     end
+
+
+
     
     should "have shipped method set the shipped_on date" do
       assert_nil @markv_o2_1.shipped_on          # confirm not yet shipped
