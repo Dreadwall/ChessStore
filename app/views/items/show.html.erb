@@ -39,14 +39,14 @@
   </div>
 </div>
 
-
-
-<% if admin? || manager? %>
-	<!-- Add buttons to list all, edit project or destroy object -->
-  <div class="row">
+ <div class="row">
     <div class="small-1 columns" style="width: 10%;" >
       &nbsp;
     </div>
+  <% @myflag = @item.active ? 'Yes' : 'No' %>
+<% if ((admin? || manager?) && @myflag == 'Yes' )%>
+	<!-- Add buttons to list all, edit project or destroy object -->
+ 
   <div class="small-6 columns">    
     
     <%= link_to(new_purchase_path(item_id: @item.id), id: 'new_purchase_link', class: 'button tiny radius', remote: true) do %>
@@ -60,4 +60,17 @@
   </div>
 
 	<%= render partial: "partials/object_options", locals: {model_name: "item", object: @item}  %>
+  <% else %>
+   <div class="small-6 columns">    
+      <%= link_to edit_item_path(@item), class: 'button radius' do %>
+        &nbsp;<%= "Edit Item" %>
+
+    <% end %>
+    </div>
+     <div class="small-1 columns" style="width: 10%;" >
+      &nbsp;
+    </div>
 <% end %>
+
+</div>
+

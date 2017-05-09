@@ -36,10 +36,10 @@ class SchoolsController < ApplicationController
   end
 
   def edit
+     @school = School.find(params[:id])
   end
 
   def destroy
-
     @school = School.find(params[:id])
     authorize! :destroy, @school
     @school.destroy
@@ -48,7 +48,7 @@ class SchoolsController < ApplicationController
 
   private
   def school_params
-    params.require(:school).permit(:name, :street_1, :street_2, :city, :state, :zip, :min_grade, :max_grade)
+    params.require(:school).permit(:name, :active, :street_1, :street_2, :city, :state, :zip, :min_grade, :max_grade)
   end
 
 

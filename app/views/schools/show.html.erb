@@ -11,8 +11,26 @@
 </div>
 
 
-
-<% if admin? || manager? %>
+ <div class="row">
+    <div class="small-1 columns" style="width: 10%;" >
+      &nbsp;
+    </div>
+    <% @myflag = @school.active ? 'Yes' : 'No' %>
+<% if ((admin? || manager?) && @myflag == 'Yes') %>
 	<!-- Add buttons to list all, edit project or destroy object -->
 	<%= render partial: "partials/object_options", locals: {model_name: "school", object: @school}  %>
+
+ <% else %>
+   <div class="small-6 columns">    
+      <%= link_to edit_school_path(@school), class: 'button radius' do %>
+        &nbsp;<%= "Edit School" %>
+
+    <% end %>
+    </div>
+     <div class="small-1 columns" style="width: 10%;" >
+      &nbsp;
+    </div>
+
+
+
 <% end %>
