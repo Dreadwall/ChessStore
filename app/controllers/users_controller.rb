@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def edit
      @user = User.find(params[:id])
-    authorize! :edit, @user
+     authorize! :edit, @user
   end
 
 

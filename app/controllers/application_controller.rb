@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
     redirect_to home_path
   end
 
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    render template: 'errors/not_found'
+  end
+
 
 
   private

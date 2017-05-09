@@ -34,5 +34,5 @@ Rails.application.routes.draw do
   post 'sessions' => 'sessions#create'
   get 'logout' => 'sessions#destroy', :as => :logout
  
-
+  get '*a', to: 'errors#routing'
 end
