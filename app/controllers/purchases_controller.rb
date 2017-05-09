@@ -23,6 +23,7 @@ class PurchasesController < ApplicationController
     if @purchase.save
        @item = @purchase.item
         respond_to do |format|
+          format.html { redirect_to purchases_path, notice: 'Purchase was successfully created.'}
           format.js
         end
     else

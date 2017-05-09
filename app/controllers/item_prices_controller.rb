@@ -23,6 +23,7 @@ class ItemPricesController < ApplicationController
       @item = @item_price.item
       @price_history = @item.item_prices.chronological.to_a
       respond_to do |format|
+          format.html { redirect_to item_prices_path, notice: 'Item Price was successfully created.' }
           format.js
         end
     
