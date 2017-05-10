@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
 			@subtotal = calculate_cart_items_cost
 		    @shipping = calculate_cart_shipping
 	    	@order = Order.new(order_params)
-	    	@order.date = Date.today
+	    	@order.date = Date.current
 	    	@order.grand_total = @subtotal + @shipping
 	    	@order.user = current_user
 	    	if @order.grand_total == 0
